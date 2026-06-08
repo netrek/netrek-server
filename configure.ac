@@ -3,7 +3,8 @@ dnl	generate the file "configure", which is run during Netrek installation
 dnl	to configure the system for the local environment.
 AC_INIT
 AC_CONFIG_SRCDIR([ntserv/daemon.c])
-AC_CONFIG_HEADER(include/config.h)
+AC_CONFIG_HEADERS([include/config.h])
+AC_CONFIG_MACRO_DIRS([m4])
 AC_PREFIX_DEFAULT("/usr/local/games/netrek-server-vanilla")
 
   # default the prefix
@@ -72,7 +73,6 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <sys/types.h>]], [[fd_set readMask
 #	they don't exist.
 #--------------------------------------------------------------------
 
-AC_HEADER_STDC
 AC_CHECK_HEADERS(unistd.h memory.h math.h stdlib.h)
 AC_CHECK_HEADERS(sys/timeb.h sys/ptyio.h sys/fcntl.h fcntl.h)
 AC_CHECK_HEADERS(ctype.h machine/endian.h sys/resource.h)

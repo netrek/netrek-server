@@ -4,7 +4,8 @@
 
 rm -f config.guess config.sub ltmain.sh;
 
-aclocal
+mkdir -p m4
+aclocal -I m4
 libtoolize --copy
 if [ ! -f config.sub ]; then
     # later versions of libtool silently fail to create config.sub
