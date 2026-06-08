@@ -43,7 +43,7 @@
 int restart;		/* global flag, set by SIGHUP, cleared by read	*/
 int debug = 0;		/* programmers' debugging flag			*/
 
-static int get_connection();
+static int get_connection(struct sockaddr_in *peer);
 static int read_portfile(char *);
 static void deny(char *ip);
 static void statistics(int, char *ip);
