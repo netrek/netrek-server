@@ -64,9 +64,7 @@ int closefast;			/* approach speed (soft turn) */
 
 void cleanup();
 
-int main(argc, argv)
-int argc;
-char **argv;
+int main(int argc, char **argv)
 {
     void rmove();
     int team = 4;

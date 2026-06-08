@@ -210,11 +210,11 @@ int sndLogin( struct plyr_login_spacket* login, struct player* pl)
 
   login->type = SP_PL_LOGIN;
   login->pnum = pl->p_no;
-  strncpy(login->name, pl->p_name, NAME_LEN);
+  memcpy(login->name, pl->p_name, NAME_LEN);
   login->name[NAME_LEN-1] = 0;
-  strncpy(login->monitor, pl->p_monitor, NAME_LEN);
+  memcpy(login->monitor, pl->p_monitor, NAME_LEN);
   login->monitor[NAME_LEN-1] = 0;
-  strncpy(login->login, pl->p_login, NAME_LEN);
+  memcpy(login->login, pl->p_login, NAME_LEN);
   login->login[NAME_LEN-1] = 0;
 
   /* limit the rank sent to clients that do not understand higher ranks */

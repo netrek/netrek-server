@@ -485,6 +485,7 @@ int makedistress (struct distress *dist, /* the info */
 
   /* second step is to evaluate tests, buf1->buf2 */
   testmacro (buf1, buf2, &index, &index2);
+  if (index2 >= 10 * MAXMACLEN) index2 = 10 * MAXMACLEN - 1;
   buf2[index2] = '\0';
 
   if (index2 <= 0)
