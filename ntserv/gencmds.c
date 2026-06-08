@@ -124,13 +124,13 @@ int check_2_command(struct message *mess, struct command_handler_2 *cmds,
 	     on it's own.  I include it here for compatibility */
 	  who = getplayer(mess->m_from, comm);
 	  if (who >= 0)
-	    (*cmds[i].handler)(comm, mess, who, cmds, i, prereqs);
+	    ((void (*)(char *, struct message *, int, struct command_handler_2 *, int, int))cmds[i].handler)(comm, mess, who, cmds, i, prereqs);
 	  else {
 	    free(comm);
 	    return 0;
 	  }
 	} else
-	  (*cmds[i].handler)(comm, mess, cmds, i, prereqs);
+	  ((void (*)(char *, struct message *, struct command_handler_2 *, int, int))cmds[i].handler)(comm, mess, cmds, i, prereqs);
       }
       free(comm);
       return 1;
@@ -287,9 +287,9 @@ int do_vote(char *comm, struct message *mess, struct command_handler_2 *votes,
       j->voting[what] = -1;
 
     if (votes[num].tag & C_PLAYER)
-      (*votes[num].handler)(who, player, mflag, sendto);
+      ((void (*)(int, int, int, int))votes[num].handler)(who, player, mflag, sendto);
     else
-      (*votes[num].handler)(who, mflag, sendto);
+      ((void (*)(int, int, int))votes[num].handler)(who, mflag, sendto);
 
     return 1;
   }

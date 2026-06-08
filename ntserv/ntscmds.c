@@ -116,168 +116,168 @@ static struct command_handler_2 nts_commands[] =
     { "CLIENT",
 		C_PLAYER,
 		"Show player's client         e.g. 'CLIENT 0'",
-		do_client_query },		/* CLIENT */
+		(void (*)()) do_client_query },		/* CLIENT */
     { "PING",
 		C_PLAYER,
 		"Show player's ping (lag)     e.g. 'PING 0'",
-		do_ping_query },		/* PING */
+		(void (*)()) do_ping_query },		/* PING */
     { "STATS",
 		C_PLAYER,
 		"Show player's t-mode stats   e.g. 'STATS 0'",
-		do_stats_query },		/* STATS */
+		(void (*)()) do_stats_query },		/* STATS */
 #ifdef LTD_STATS
     { "LTD",
 		C_PLAYER,
 		"Show your LTD stats via a web page",
-		do_ltd_query },			/* LTD */
+		(void (*)()) do_ltd_query },			/* LTD */
 #endif
     { "WHOIS",
 		C_PLAYER,
 		"Show player's login info     e.g. 'WHOIS 0'",
-		do_whois_query },		/* WHOIS */
+		(void (*)()) do_whois_query },		/* WHOIS */
     { "PASSWORD",
 		C_PR_INPICKUP,
 		"Change your password         e.g. 'password neato neato'",
-		do_password },			/* PASSWORD */
+		(void (*)()) do_password },			/* PASSWORD */
     { "ADMIN",
 		0,
 		"Administration commands for privileged users",
-		do_admin },			/* ADMIN */
+		(void (*)()) do_admin },			/* ADMIN */
 #ifdef REGISTERED_USERS
     { "REGISTER",
 		C_PR_INPICKUP,
 		"Register your character, e.g. 'register you@example.com'",
-		do_register },			/* ADMIN */
+		(void (*)()) do_register },			/* ADMIN */
 #endif
 #ifdef NODOCK
     { "DOCK",
       C_PR_INPICKUP,
       "Toggle individual player docking permission. eg. 'DOCK 0 ON|OFF'",
-      do_nodock },
+      (void (*)()) do_nodock },
 #endif
 
 #ifdef NOTRANSWARP
     { "TRANSWARP",
       C_PR_INPICKUP,
       "Set transwarp permission for all players. eg. 'TRANSWARP ON|OFF'",
-      do_transwarp },
+      (void (*)()) do_transwarp },
 #endif
 
 #ifdef ALLOW_PAUSE
     { "PAUSE",
                 0,
                 "Pause the game",
-                game_pause },
+                (void (*)()) game_pause },
     { "UNPAUSE",
                 0,
                 "Resume the game",
-                game_resume },
+                (void (*)()) game_resume },
 #endif
     { "SBSTATS",
                 C_PLAYER,
                 "Show player's base stats     e.g. 'SBSTATS 0'",
-                do_sbstats_query },             /* SBSTATS */
+                (void (*)()) do_sbstats_query },             /* SBSTATS */
 						/***** Vanilla commands */
     { "QUEUE",
 		0,
 		"Show how many people are on the queue.",
-		do_queue_msg },			/* QUEUE */
+		(void (*)()) do_queue_msg },			/* QUEUE */
     { "(type QUEUE HOSTS to see the addresses of those on queue)", C_DESC },
     { "NOWOBBLE",
 		0,
 		"Test new wobble on planet lock fix.",
-		do_nowobble },			/* NOWOBBLE */
+		(void (*)()) do_nowobble },			/* NOWOBBLE */
     { "TIPS",
 		0,
 		"Test new tips feature, may require client support.",
-		do_tips },			/* TIPS */
+		(void (*)()) do_tips },			/* TIPS */
 #ifdef EXPERIMENTAL_BE
     { "BE",
 		0,
 		"Switch between observer, player, or a different slot.",
-		do_be },			/* BE */
+		(void (*)()) do_be },			/* BE */
     { "SUB",
 		0,
 		"Sub in or out, between observer and player.",
-		do_sub },			/* SUB */
+		(void (*)()) do_sub },			/* SUB */
 #endif
     { "TIME",
 		C_PR_INPICKUP,
 		"Show time left on surrender timer.",
-		do_time_msg },			/* TIME */
+		(void (*)()) do_time_msg },			/* TIME */
 	{ "SBTIME",
 		C_PLAYER,
 		"Show time until the Starbase is available.",
-		do_sbtime_msg },		/* SBTIME */
+		(void (*)()) do_sbtime_msg },		/* SBTIME */
 	{ "IGNORING",
 		C_PLAYER,
 		"Display list of ip's you are ignoring.",
-		do_display_ignoring },		/* IGNORING */
+		(void (*)()) do_display_ignoring },		/* IGNORING */
 	{ "IGNOREDBY",
 		C_PLAYER,
 		"Display list of ip's that are ignoring you.",
-		do_display_ignoredby },		/* IGNOREDBY */
+		(void (*)()) do_display_ignoredby },		/* IGNOREDBY */
 #ifdef GENO_COUNT
     { "GENOS",
 		C_PLAYER | C_PR_INPICKUP,
 		"Show player's genocides      e.g. 'GENOS 0'",
-		do_genos_query },                       /* GENOS */
+		(void (*)()) do_genos_query },                       /* GENOS */
 #endif
     { "The following votes can be used:  (M=Majority, T=Team vote)",
       C_DESC  | C_PR_INPICKUP},
     { "EJECT",
 	C_VC_TEAM | C_GLOG | C_PLAYER | C_PR_INPICKUP | C_PR_VOTE,
 	"Eject a player               e.g. 'EJECT 0 IDLE'", 
-	do_player_eject,				/* EJECT */
+	(void (*)()) do_player_eject,				/* EJECT */
 	2, PV_EJECT, 120, 300},
     { "BAN",
 	C_VC_TEAM | C_GLOG | C_PLAYER | C_PR_INPICKUP | C_PR_VOTE,
 	"Eject and ban a player       e.g. 'BAN 0'", 
-	do_player_ban,					/* BAN */
+	(void (*)()) do_player_ban,					/* BAN */
 	4, PV_BAN, 120, 120},
     { "NOPICK",
 	C_VC_TEAM | C_GLOG | C_PLAYER | C_PR_INPICKUP | C_PR_VOTE,
 	"Prevent player from picking, e.g. 'NOPICK 0'", 
-	do_player_nopick,				/* NOPICK */
+	(void (*)()) do_player_nopick,				/* NOPICK */
 	4, PV_NOPICK, 120, 120},
 #if defined(TRIPLE_PLANET_MAYHEM)
     { "TRIPLE",
         C_VC_ALL | C_GLOG | C_PR_INPICKUP | C_PR_VOTE,
         "Start triple planet mayhem by vote",
-        do_triple_planet_mayhem,
+        (void (*)()) do_triple_planet_mayhem,
 	2, PV_OTHER, 0},
     { "BALANCE",
         C_VC_ALL | C_GLOG | C_PR_INPICKUP | C_PR_VOTE,
         "Request team randomise & balance",
-        do_balance,
+        (void (*)()) do_balance,
         4, PV_OTHER+1, 0 },
 #endif
 #if defined(AUTO_INL)
   { "INL",
 	C_VC_ALL | C_GLOG | C_PR_INPICKUP | C_PR_VOTE,
 	"Start game under INL rules.",
-	do_start_inl,
+	(void (*)()) do_start_inl,
 	1, PV_OTHER+2, 0 },
 #endif
 #if defined(AUTO_PRACTICE)
   { "PRACTICE",
 	C_VC_ALL | C_PR_INPICKUP | C_PR_VOTE,
 	"Start basepractice by majority vote.",
-	do_start_basep,
+	(void (*)()) do_start_basep,
 	1, PV_OTHER+3, 0 },
 #endif
 #if defined(AUTO_HOCKEY)
   { "HOCKEY",
 	C_VC_ALL | C_GLOG | C_PR_INPICKUP | C_PR_VOTE,
 	"Start hockey by majority vote.",
-	do_start_puck,
+	(void (*)()) do_start_puck,
 	1, PV_OTHER+4, 0 },
 #endif
 #if defined(AUTO_DOGFIGHT)
   { "DOGFIGHT",
 	C_VC_ALL | C_GLOG | C_PR_INPICKUP | C_PR_VOTE,
 	"Start dogfight tournament by majority vote.",
-	do_start_mars,
+	(void (*)()) do_start_mars,
 	1, PV_OTHER+5, 0 },
 #endif
 

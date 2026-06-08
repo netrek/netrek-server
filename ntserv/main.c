@@ -53,7 +53,6 @@ int main(int argc, char **argv)
     int callHost=0;
     time_t starttime;
     int i;
-    extern void forceShutdown ();
     char pseudo[PSEUDOSIZE];  /* Was a global - MK 9/30/94 */
 
     getpath();	/* added 11/6/92 DRG */
